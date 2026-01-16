@@ -17,46 +17,36 @@ export interface GalleryImage {
 }
 
 export const GALLERY_IMAGES: GalleryImage[] = [
-  // ==================== INTÉRIEUR ====================
+  // ==================== INTÉRIEUR (Photos Google Maps L'Anecdote) ====================
   {
     id: 'interior-1',
-    url: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200',
-    thumbnail: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400',
-    alt: 'Salle principale du restaurant L\'Anecdote avec tables en bois et nappes à carreaux',
+    url: 'assets/images/gallery/interior-1.jpg',
+    thumbnail: 'assets/images/gallery/interior-1.jpg',
+    alt: 'Salle principale du restaurant L\'Anecdote avec ambiance chaleureuse',
     category: 'interior',
     caption: 'Notre salle principale chaleureuse',
-    width: 1200,
-    height: 800
+    width: 1920,
+    height: 1440
   },
   {
     id: 'interior-2',
-    url: 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=1200',
-    thumbnail: 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400',
-    alt: 'Intérieur du restaurant avec décoration bistrot parisien',
+    url: 'assets/images/gallery/interior-2.jpg',
+    thumbnail: 'assets/images/gallery/interior-2.jpg',
+    alt: 'Intérieur du restaurant L\'Anecdote - Décoration bistrot parisien',
     category: 'interior',
     caption: 'Ambiance bistrot authentique',
-    width: 1200,
-    height: 800
+    width: 1920,
+    height: 1440
   },
   {
     id: 'interior-3',
-    url: 'https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=1200',
-    thumbnail: 'https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=400',
-    alt: 'Bar du restaurant avec bouteilles de vin',
+    url: 'assets/images/gallery/interior-3.jpg',
+    thumbnail: 'assets/images/gallery/interior-3.jpg',
+    alt: 'Espace bar du restaurant L\'Anecdote',
     category: 'interior',
     caption: 'Notre bar et sa sélection de vins',
-    width: 1200,
-    height: 800
-  },
-  {
-    id: 'interior-4',
-    url: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1200',
-    thumbnail: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400',
-    alt: 'Tables dressées avec nappes à carreaux rouges et blancs',
-    category: 'interior',
-    caption: 'Tables typiques du bistrot parisien',
-    width: 1200,
-    height: 800
+    width: 1920,
+    height: 1440
   },
 
   // ==================== PLATS ====================
@@ -141,46 +131,36 @@ export const GALLERY_IMAGES: GalleryImage[] = [
     height: 800
   },
 
-  // ==================== AMBIANCE ====================
+  // ==================== AMBIANCE (Photos Google Maps L'Anecdote) ====================
   {
     id: 'atmosphere-1',
-    url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200',
-    thumbnail: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400',
-    alt: 'Service en salle au restaurant',
+    url: 'assets/images/gallery/ambiance-1.jpg',
+    thumbnail: 'assets/images/gallery/ambiance-1.jpg',
+    alt: 'Ambiance chaleureuse du restaurant L\'Anecdote',
     category: 'atmosphere',
-    caption: 'Service attentionné',
-    width: 1200,
-    height: 800
+    caption: 'Ambiance conviviale',
+    width: 1920,
+    height: 1440
   },
   {
     id: 'atmosphere-2',
-    url: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1200',
-    thumbnail: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=400',
-    alt: 'Verres de vin et couverts sur table',
+    url: 'assets/images/gallery/ambiance-2.jpg',
+    thumbnail: 'assets/images/gallery/ambiance-2.jpg',
+    alt: 'Décoration intérieure du restaurant L\'Anecdote',
     category: 'atmosphere',
     caption: 'Moments de partage',
-    width: 1200,
-    height: 800
+    width: 1920,
+    height: 1440
   },
   {
     id: 'atmosphere-3',
-    url: 'https://images.unsplash.com/photo-1560512823-829485b8bf24?w=1200',
-    thumbnail: 'https://images.unsplash.com/photo-1560512823-829485b8bf24?w=400',
-    alt: 'Spritz Aperol sur terrasse',
+    url: 'assets/images/gallery/ambiance-3.jpg',
+    thumbnail: 'assets/images/gallery/ambiance-3.jpg',
+    alt: 'Détails de décoration du restaurant L\'Anecdote',
     category: 'atmosphere',
-    caption: 'Apéritif en terrasse',
-    width: 1200,
-    height: 800
-  },
-  {
-    id: 'atmosphere-4',
-    url: 'https://images.unsplash.com/photo-1428515613728-6b4607e44363?w=1200',
-    thumbnail: 'https://images.unsplash.com/photo-1428515613728-6b4607e44363?w=400',
-    alt: 'Table de restaurant le soir',
-    category: 'atmosphere',
-    caption: 'Ambiance du soir',
-    width: 1200,
-    height: 800
+    caption: 'Détails soignés',
+    width: 1920,
+    height: 1440
   }
 ];
 
