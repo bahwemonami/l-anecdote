@@ -1,0 +1,229 @@
+<!-- Hero Section -->
+<section class="hero-page">
+  <div class="hero-page__background">
+    <img 
+      src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920" 
+      alt="Table dressée au restaurant"
+      loading="eager">
+    <div class="hero-page__overlay"></div>
+  </div>
+  <div class="hero-page__content">
+    <span class="hero-page__label">Découvrez</span>
+    <h1 class="hero-page__title">Notre Carte</h1>
+    <p class="hero-page__subtitle">Une cuisine française authentique et généreuse</p>
+  </div>
+</section>
+
+<!-- Formulas Section -->
+<section class="formulas section">
+  <div class="container">
+    <div class="section-header scroll-reveal">
+      <span class="section-label">Nos Formules</span>
+      <h2 class="section-title">Menus du jour</h2>
+    </div>
+
+    <div class="formulas__grid">
+      @for (formula of formulas; track formula.id) {
+        <div class="formula-card scroll-reveal">
+          <div class="formula-card__header">
+            <h3 class="formula-card__title">{{ formula.name }}</h3>
+            <span class="formula-card__price">{{ formula.price }} €</span>
+          </div>
+          <p class="formula-card__description">{{ formula.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Menu Section -->
+<section class="menu section">
+  <div class="container">
+    <!-- Entrées -->
+    <div class="menu-category scroll-reveal" id="entrees">
+      <div class="menu-category__header">
+        <h2 class="menu-category__title">Entrées</h2>
+        <div class="menu-category__line"></div>
+      </div>
+      <div class="menu-category__grid">
+        @for (item of starters; track item.id) {
+          <article class="menu-item">
+            @if (item.image) {
+              <div class="menu-item__image">
+                <img [src]="item.image" [alt]="item.name" loading="lazy">
+                @if (item.isVegetarian) {
+                  <span class="menu-item__badge menu-item__badge--veg">V</span>
+                }
+                @if (item.isSignature) {
+                  <span class="menu-item__badge menu-item__badge--signature">★</span>
+                }
+              </div>
+            }
+            <div class="menu-item__content">
+              <div class="menu-item__header">
+                <h3 class="menu-item__name">{{ item.name }}</h3>
+                <span class="menu-item__price">{{ item.price }} €</span>
+              </div>
+              <p class="menu-item__description">{{ item.description }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+
+    <!-- Plats -->
+    <div class="menu-category scroll-reveal" id="plats">
+      <div class="menu-category__header">
+        <h2 class="menu-category__title">Plats</h2>
+        <div class="menu-category__line"></div>
+      </div>
+      <div class="menu-category__grid">
+        @for (item of mains; track item.id) {
+          <article class="menu-item">
+            @if (item.image) {
+              <div class="menu-item__image">
+                <img [src]="item.image" [alt]="item.name" loading="lazy">
+                @if (item.isVegetarian) {
+                  <span class="menu-item__badge menu-item__badge--veg">V</span>
+                }
+                @if (item.isSignature) {
+                  <span class="menu-item__badge menu-item__badge--signature">★</span>
+                }
+              </div>
+            }
+            <div class="menu-item__content">
+              <div class="menu-item__header">
+                <h3 class="menu-item__name">
+                  {{ item.name }}
+                  @if (item.supplement) {
+                    <span class="menu-item__supplement">+{{ item.supplement }}€</span>
+                  }
+                </h3>
+                <span class="menu-item__price">{{ item.price }} €</span>
+              </div>
+              <p class="menu-item__description">{{ item.description }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+
+    <!-- Desserts -->
+    <div class="menu-category scroll-reveal" id="desserts">
+      <div class="menu-category__header">
+        <h2 class="menu-category__title">Desserts</h2>
+        <div class="menu-category__line"></div>
+      </div>
+      <div class="menu-category__grid">
+        @for (item of desserts; track item.id) {
+          <article class="menu-item">
+            @if (item.image) {
+              <div class="menu-item__image">
+                <img [src]="item.image" [alt]="item.name" loading="lazy">
+                @if (item.isSignature) {
+                  <span class="menu-item__badge menu-item__badge--signature">★</span>
+                }
+              </div>
+            }
+            <div class="menu-item__content">
+              <div class="menu-item__header">
+                <h3 class="menu-item__name">{{ item.name }}</h3>
+                <span class="menu-item__price">{{ item.price }} €</span>
+              </div>
+              <p class="menu-item__description">{{ item.description }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+
+    <!-- Boissons -->
+    <div class="menu-category scroll-reveal" id="boissons">
+      <div class="menu-category__header">
+        <h2 class="menu-category__title">Boissons</h2>
+        <div class="menu-category__line"></div>
+      </div>
+      
+      <div class="drinks-grid">
+        <!-- Bières -->
+        <div class="drinks-section">
+          <h3 class="drinks-section__title">Bières</h3>
+          <ul class="drinks-list">
+            @for (item of drinks; track item.id) {
+              @if (item.category === 'beer') {
+                <li class="drinks-list__item">
+                  <span class="drinks-list__name">{{ item.name }}</span>
+                  <span class="drinks-list__dots"></span>
+                  <span class="drinks-list__price">{{ item.price }} €</span>
+                </li>
+              }
+            }
+          </ul>
+        </div>
+
+        <!-- Cocktails -->
+        <div class="drinks-section">
+          <h3 class="drinks-section__title">Cocktails</h3>
+          <ul class="drinks-list">
+            @for (item of drinks; track item.id) {
+              @if (item.category === 'cocktail') {
+                <li class="drinks-list__item">
+                  <span class="drinks-list__name">{{ item.name }}</span>
+                  <span class="drinks-list__dots"></span>
+                  <span class="drinks-list__price">{{ item.price }} €</span>
+                </li>
+              }
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Info Section -->
+<section class="menu-info section">
+  <div class="container">
+    <div class="menu-info__content scroll-reveal">
+      <div class="menu-info__item">
+        <span class="menu-info__icon">V</span>
+        <span>Option végétarienne</span>
+      </div>
+      <div class="menu-info__item">
+        <span class="menu-info__icon">★</span>
+        <span>Plat signature</span>
+      </div>
+      <p class="menu-info__note">
+        Les prix sont indiqués en euros TTC. Tous nos plats sont faits maison.
+        N'hésitez pas à nous signaler vos allergies.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box scroll-reveal">
+      <h2 class="cta-box__title">Envie de découvrir notre cuisine ?</h2>
+      <p class="cta-box__text">Réservez votre table dès maintenant</p>
+      <div class="cta-box__buttons">
+        <a 
+          [href]="'tel:' + restaurant.contact.phone" 
+          class="btn btn-white btn-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          Appeler
+        </a>
+        <a 
+          [href]="restaurant.contact.social.thefork" 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-accent btn-lg">
+          Réserver sur TheFork
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,141 @@
+<!-- Hero Section -->
+<section class="hero-page">
+  <div class="hero-page__background">
+    <img 
+      src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1920" 
+      alt="Clients satisfaits au restaurant"
+      loading="eager">
+    <div class="hero-page__overlay"></div>
+  </div>
+  <div class="hero-page__content">
+    <span class="hero-page__label">Témoignages</span>
+    <h1 class="hero-page__title">Avis Clients</h1>
+    <p class="hero-page__subtitle">Ce que nos clients pensent de nous</p>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats section">
+  <div class="container">
+    <div class="stats__grid scroll-reveal">
+      <!-- Overall Rating -->
+      <div class="stats__main">
+        <div class="stats__rating">
+          <span class="stats__rating-value">{{ stats.averageRating }}</span>
+          <span class="stats__rating-max">/10</span>
+        </div>
+        <div class="stats__stars">
+          @for (star of getStarArray(stats.averageRating); track $index) {
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          }
+        </div>
+        <p class="stats__count">{{ stats.totalReviews }} avis vérifiés</p>
+      </div>
+
+      <!-- Category Ratings -->
+      <div class="stats__categories">
+        <div class="stats__category">
+          <span class="stats__category-label">Cuisine</span>
+          <div class="stats__category-bar">
+            <div class="stats__category-fill" [style.width]="(stats.categories.food / 10 * 100) + '%'"></div>
+          </div>
+          <span class="stats__category-value">{{ stats.categories.food }}</span>
+        </div>
+        <div class="stats__category">
+          <span class="stats__category-label">Service</span>
+          <div class="stats__category-bar">
+            <div class="stats__category-fill" [style.width]="(stats.categories.service / 10 * 100) + '%'"></div>
+          </div>
+          <span class="stats__category-value">{{ stats.categories.service }}</span>
+        </div>
+        <div class="stats__category">
+          <span class="stats__category-label">Ambiance</span>
+          <div class="stats__category-bar">
+            <div class="stats__category-fill" [style.width]="(stats.categories.ambiance / 10 * 100) + '%'"></div>
+          </div>
+          <span class="stats__category-value">{{ stats.categories.ambiance }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews List -->
+<section class="reviews-list section">
+  <div class="container">
+    <div class="reviews-list__grid">
+      @for (review of reviews; track review.id; let i = $index) {
+        <article class="review-card scroll-reveal" [style.animation-delay]="(i * 0.05) + 's'">
+          <header class="review-card__header">
+            <div class="review-card__author">
+              <div class="review-card__avatar">{{ getInitial(review.author) }}</div>
+              <div class="review-card__info">
+                <h3 class="review-card__name">{{ review.author }}</h3>
+                <span class="review-card__date">{{ review.dateFormatted }}</span>
+              </div>
+            </div>
+            <div class="review-card__rating">
+              <span class="review-card__rating-value">{{ review.rating }}</span>
+              <span class="review-card__rating-max">/{{ review.maxRating }}</span>
+            </div>
+          </header>
+          
+          <div class="review-card__content">
+            <p>"{{ review.comment }}"</p>
+          </div>
+
+          @if (review.response) {
+            <div class="review-card__response">
+              <div class="review-card__response-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/>
+                </svg>
+                <span>Réponse de {{ review.response.author }}</span>
+              </div>
+              <p>{{ review.response.comment }}</p>
+            </div>
+          }
+
+          <footer class="review-card__footer">
+            <span class="review-card__source">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <path d="m9 11 3 3L22 4"/>
+              </svg>
+              Avis vérifié TheFork
+            </span>
+          </footer>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box scroll-reveal">
+      <h2 class="cta-box__title">Vous aussi, vivez l'expérience L'Anecdote</h2>
+      <p class="cta-box__text">Réservez votre table et laissez-nous vous surprendre</p>
+      <div class="cta-box__buttons">
+        <a 
+          [href]="restaurant.contact.social.thefork" 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-accent btn-lg">
+          Réserver sur TheFork
+        </a>
+        <a 
+          [href]="'tel:' + restaurant.contact.phone" 
+          class="btn btn-white btn-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          Appeler
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,380 @@
+// ==============================================
+// COMPONENTS - CARDS
+// Restaurant L'Anecdote
+// ==============================================
+
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+// ---------------------------------------------
+// BASE CARD
+// ---------------------------------------------
+
+.card {
+  @include card-base;
+  @include card-hover;
+}
+
+// ---------------------------------------------
+// DISH CARD
+// ---------------------------------------------
+
+.card-dish {
+  @include card-base;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+
+    @include tablet {
+      height: 220px;
+    }
+
+    img {
+      @include image-cover;
+      transition: transform $transition-slow;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba($color-black, 0.3), transparent);
+      opacity: 0;
+      transition: opacity $transition-normal;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: $spacing-5;
+  }
+
+  &__category {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wider;
+    color: $color-accent;
+    margin-bottom: $spacing-2;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $color-text;
+    margin-bottom: $spacing-2;
+
+    @include tablet {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__description {
+    @include text-clamp(2);
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    margin-bottom: $spacing-4;
+    flex: 1;
+  }
+
+  &__footer {
+    @include flex-between;
+    margin-top: auto;
+  }
+
+  &__price {
+    font-family: $font-heading;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-primary-800;
+
+    span {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-regular;
+      color: $color-text-muted;
+    }
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-1;
+    padding: $spacing-1 $spacing-2;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    color: $color-success;
+    background-color: rgba($color-success, 0.1);
+    border-radius: $border-radius-full;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  // Hover effects
+  &:hover {
+    transform: translateY(-8px);
+
+    .card-dish__image img {
+      transform: scale(1.05);
+    }
+
+    .card-dish__image::after {
+      opacity: 1;
+    }
+  }
+}
+
+// ---------------------------------------------
+// REVIEW CARD
+// ---------------------------------------------
+
+.card-review {
+  @include card-base;
+  padding: $spacing-6;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    @include flex-between;
+    margin-bottom: $spacing-4;
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+  }
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: $border-radius-full;
+    background-color: $color-primary-200;
+    @include flex-center;
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $color-primary-800;
+    overflow: hidden;
+
+    img {
+      @include image-cover;
+    }
+  }
+
+  &__info {
+    h4 {
+      font-family: $font-body;
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      color: $color-text;
+      margin-bottom: $spacing-1;
+    }
+
+    span {
+      font-size: $font-size-sm;
+      color: $color-text-muted;
+    }
+  }
+
+  &__rating {
+    @include flex-center;
+    gap: $spacing-1;
+    padding: $spacing-2 $spacing-3;
+    background-color: $color-accent;
+    border-radius: $border-radius-lg;
+    color: $color-white;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-sm;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__content {
+    flex: 1;
+
+    p {
+      font-size: $font-size-base;
+      line-height: $line-height-relaxed;
+      color: $color-text-light;
+      font-style: italic;
+    }
+  }
+
+  &__source {
+    margin-top: $spacing-4;
+    padding-top: $spacing-4;
+    border-top: 1px solid $color-primary-100;
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wide;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+// ---------------------------------------------
+// GALLERY CARD
+// ---------------------------------------------
+
+.card-gallery {
+  position: relative;
+  overflow: hidden;
+  border-radius: $border-radius-xl;
+  cursor: pointer;
+
+  &__image {
+    @include aspect-ratio(4, 3);
+
+    img {
+      @include image-cover;
+      transition: transform $transition-slow;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba($color-black, 0.7) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity $transition-normal;
+    @include flex-column;
+    justify-content: flex-end;
+    padding: $spacing-4;
+  }
+
+  &__caption {
+    color: $color-white;
+    font-size: $font-size-sm;
+    transform: translateY(10px);
+    transition: transform $transition-normal;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    transition: all $transition-normal;
+    background-color: rgba($color-white, 0.9);
+    border-radius: $border-radius-full;
+    width: 56px;
+    height: 56px;
+    @include flex-center;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      color: $color-primary-800;
+    }
+  }
+
+  &:hover {
+    .card-gallery__image img {
+      transform: scale(1.1);
+    }
+
+    .card-gallery__overlay {
+      opacity: 1;
+    }
+
+    .card-gallery__caption {
+      transform: translateY(0);
+    }
+
+    .card-gallery__icon {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}
+
+// ---------------------------------------------
+// INFO CARD
+// ---------------------------------------------
+
+.card-info {
+  @include card-base;
+  padding: $spacing-6;
+  text-align: center;
+
+  &__icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto $spacing-4;
+    background-color: $color-primary-100;
+    border-radius: $border-radius-full;
+    @include flex-center;
+
+    svg {
+      width: 28px;
+      height: 28px;
+      color: $color-primary-700;
+    }
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $color-text;
+    margin-bottom: $spacing-2;
+  }
+
+  &__text {
+    font-size: $font-size-base;
+    color: $color-text-light;
+    line-height: $line-height-relaxed;
+  }
+}
+
+// ---------------------------------------------
+// FEATURE CARD
+// ---------------------------------------------
+
+.card-feature {
+  @include card-base;
+  padding: $spacing-8;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all $transition-normal;
+
+  &:hover {
+    border-color: $color-accent;
+    transform: translateY(-4px);
+  }
+
+  &__number {
+    font-family: $font-heading;
+    font-size: $font-size-5xl;
+    font-weight: $font-weight-bold;
+    color: $color-accent;
+    line-height: 1;
+    margin-bottom: $spacing-2;
+  }
+
+  &__label {
+    font-size: $font-size-base;
+    color: $color-text-light;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wider;
+  }
+}

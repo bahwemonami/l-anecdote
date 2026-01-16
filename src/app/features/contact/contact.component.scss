@@ -1,0 +1,351 @@
+@import '../../../styles/abstracts/variables';
+@import '../../../styles/abstracts/mixins';
+
+// Hero Page
+.hero-page {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  @include flex-column-center;
+
+  &__background {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    img {
+      @include image-cover;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba($color-black, 0.5) 0%,
+      rgba($color-black, 0.7) 100%
+    );
+  }
+
+  &__content {
+    text-align: center;
+    color: $color-white;
+    padding: $spacing-4;
+  }
+
+  &__label {
+    display: inline-block;
+    padding: $spacing-2 $spacing-4;
+    background-color: rgba($color-white, 0.15);
+    border-radius: $border-radius-full;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wider;
+    margin-bottom: $spacing-4;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-4;
+
+    @include tablet {
+      font-size: $font-size-5xl;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: rgba($color-white, 0.9);
+  }
+}
+
+// Contact Section
+.contact {
+  background-color: $color-background;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-6;
+
+    @include mobile-xs {
+      gap: $spacing-4;
+    }
+
+    @include mobile-up {
+      gap: $spacing-8;
+    }
+
+    @include tablet {
+      gap: $spacing-10;
+    }
+
+    @include desktop {
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-12;
+    }
+
+    @include large-desktop {
+      gap: $spacing-16;
+    }
+  }
+
+  &__form-wrapper {
+    @include card-base;
+    padding: $spacing-4;
+
+    @include mobile-xs {
+      padding: $spacing-3;
+    }
+
+    @include mobile-up {
+      padding: $spacing-6;
+    }
+
+    @include tablet {
+      padding: $spacing-8;
+    }
+
+    @include desktop {
+      padding: $spacing-10;
+    }
+  }
+
+  &__form-title {
+    font-family: $font-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-8;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-5;
+  }
+
+  &__submit {
+    margin-top: $spacing-4;
+  }
+
+  &__success {
+    text-align: center;
+    padding: $spacing-10 $spacing-4;
+
+    &-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto $spacing-6;
+      background-color: rgba($color-success, 0.1);
+      border-radius: $border-radius-full;
+      @include flex-center;
+      color: $color-success;
+    }
+
+    h3 {
+      font-family: $font-heading;
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-3;
+    }
+
+    p {
+      color: $color-text-light;
+      margin-bottom: $spacing-6;
+    }
+  }
+}
+
+// Form Styles
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-5;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.form-label {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text;
+}
+
+.form-input {
+  @include input-base;
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236d6d6d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $spacing-3 center;
+  background-size: 18px;
+  padding-right: $spacing-10;
+  cursor: pointer;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-input--error {
+  border-color: $color-error;
+
+  &:focus {
+    border-color: $color-error;
+    box-shadow: 0 0 0 3px rgba($color-error, 0.1);
+  }
+}
+
+.form-error {
+  font-size: $font-size-sm;
+  color: $color-error;
+}
+
+// Contact Info
+.contact__info-card {
+  @include card-base;
+  padding: $spacing-8;
+  height: fit-content;
+
+  @include tablet {
+    padding: $spacing-10;
+  }
+}
+
+.contact__info-title {
+  font-family: $font-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $spacing-8;
+}
+
+.contact__info-item {
+  display: flex;
+  gap: $spacing-4;
+  margin-bottom: $spacing-6;
+  padding-bottom: $spacing-6;
+  border-bottom: 1px solid $color-primary-100;
+
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  h3 {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-1;
+  }
+
+  p, a {
+    font-size: $font-size-base;
+    color: $color-text-light;
+    margin: 0;
+  }
+
+  a {
+    color: $color-primary-700;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  .btn {
+    margin-top: $spacing-3;
+  }
+}
+
+.contact__info-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  background-color: $color-primary-100;
+  border-radius: $border-radius-lg;
+  @include flex-center;
+  color: $color-primary-700;
+}
+
+.contact__info-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-1;
+  font-size: $font-size-sm !important;
+  margin-top: $spacing-2;
+}
+
+.contact__hours {
+  margin-top: $spacing-2;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    font-size: $font-size-sm;
+    padding: $spacing-1 0;
+
+    span:first-child {
+      color: $color-text-light;
+    }
+
+    span:last-child {
+      font-weight: $font-weight-medium;
+      color: $color-text;
+    }
+  }
+}
+
+// Map Section
+.map-section {
+  position: relative;
+  height: 450px;
+
+  @include tablet {
+    height: 500px;
+  }
+
+  &__container {
+    position: relative;
+    height: 100%;
+  }
+
+  iframe {
+    position: absolute;
+    inset: 0;
+  }
+
+  &__overlay {
+    position: absolute;
+    bottom: $spacing-6;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+}
+
+// Scroll Reveal
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

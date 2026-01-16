@@ -1,0 +1,381 @@
+@import '../../../styles/abstracts/variables';
+@import '../../../styles/abstracts/mixins';
+
+// Hero Page
+.hero-page {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  @include flex-column-center;
+
+  &__background {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    img {
+      @include image-cover;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba($color-black, 0.5) 0%,
+      rgba($color-black, 0.7) 100%
+    );
+  }
+
+  &__content {
+    text-align: center;
+    color: $color-white;
+    padding: $spacing-4;
+  }
+
+  &__label {
+    display: inline-block;
+    padding: $spacing-2 $spacing-4;
+    background-color: rgba($color-white, 0.15);
+    border-radius: $border-radius-full;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wider;
+    margin-bottom: $spacing-4;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-4;
+
+    @include tablet {
+      font-size: $font-size-5xl;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: rgba($color-white, 0.9);
+  }
+}
+
+// Stats Section
+.stats {
+  background-color: $color-background-alt;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-10;
+    max-width: 900px;
+    margin: 0 auto;
+
+    @include tablet {
+      grid-template-columns: auto 1fr;
+      align-items: center;
+    }
+  }
+
+  &__main {
+    text-align: center;
+    padding: $spacing-8;
+    background-color: $color-white;
+    border-radius: $border-radius-xl;
+    box-shadow: $shadow-lg;
+
+    @include tablet {
+      padding: $spacing-10;
+    }
+  }
+
+  &__rating {
+    margin-bottom: $spacing-3;
+  }
+
+  &__rating-value {
+    font-family: $font-heading;
+    font-size: $font-size-6xl;
+    font-weight: $font-weight-bold;
+    color: $color-primary-800;
+    line-height: 1;
+  }
+
+  &__rating-max {
+    font-size: $font-size-2xl;
+    color: $color-text-muted;
+  }
+
+  &__stars {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-1;
+    color: $color-accent;
+    margin-bottom: $spacing-3;
+  }
+
+  &__count {
+    font-size: $font-size-base;
+    color: $color-text-light;
+    margin: 0;
+  }
+
+  &__categories {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-5;
+  }
+
+  &__category {
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+  }
+
+  &__category-label {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: $color-text;
+    width: 80px;
+    flex-shrink: 0;
+  }
+
+  &__category-bar {
+    flex: 1;
+    height: 8px;
+    background-color: $color-primary-100;
+    border-radius: $border-radius-full;
+    overflow: hidden;
+  }
+
+  &__category-fill {
+    height: 100%;
+    background-color: $color-accent;
+    border-radius: $border-radius-full;
+    transition: width 1s ease-out;
+  }
+
+  &__category-value {
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    color: $color-primary-800;
+    width: 40px;
+    text-align: right;
+  }
+}
+
+// Reviews List
+.reviews-list {
+  background-color: $color-background;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-6;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+// Review Card
+.review-card {
+  @include card-base;
+  padding: $spacing-6;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: $spacing-4;
+    gap: $spacing-3;
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+  }
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: $border-radius-full;
+    background-color: $color-primary-200;
+    @include flex-center;
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $color-primary-800;
+  }
+
+  &__info {
+    min-width: 0;
+  }
+
+  &__name {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: $color-text;
+    margin: 0 0 $spacing-1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__date {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: baseline;
+    padding: $spacing-2 $spacing-3;
+    background-color: $color-accent;
+    border-radius: $border-radius-lg;
+    color: $color-white;
+  }
+
+  &__rating-value {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+  }
+
+  &__rating-max {
+    font-size: $font-size-sm;
+    opacity: 0.8;
+  }
+
+  &__content {
+    flex: 1;
+
+    p {
+      font-size: $font-size-base;
+      line-height: $line-height-relaxed;
+      color: $color-text-light;
+      font-style: italic;
+      margin: 0;
+    }
+  }
+
+  &__response {
+    margin-top: $spacing-4;
+    padding: $spacing-4;
+    background-color: $color-background-alt;
+    border-radius: $border-radius-lg;
+    border-left: 3px solid $color-accent;
+  }
+
+  &__response-header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    margin-bottom: $spacing-2;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $color-primary-800;
+
+    svg {
+      color: $color-accent;
+    }
+  }
+
+  &__response p {
+    font-size: $font-size-sm;
+    font-style: normal;
+    color: $color-text;
+    margin: 0;
+  }
+
+  &__footer {
+    margin-top: $spacing-4;
+    padding-top: $spacing-4;
+    border-top: 1px solid $color-primary-100;
+  }
+
+  &__source {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+
+    svg {
+      color: $color-success;
+    }
+  }
+}
+
+// CTA Section
+.cta-section {
+  padding: $spacing-16 0;
+  background-color: $color-primary-900;
+}
+
+.cta-box {
+  text-align: center;
+  padding: $spacing-10 $spacing-6;
+  background: linear-gradient(
+    135deg,
+    rgba($color-accent, 0.1) 0%,
+    transparent 100%
+  );
+  border-radius: $border-radius-xl;
+
+  @include tablet {
+    padding: $spacing-16 $spacing-12;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    color: $color-white;
+    margin-bottom: $spacing-4;
+
+    @include tablet {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  &__text {
+    font-size: $font-size-lg;
+    color: rgba($color-white, 0.8);
+    margin-bottom: $spacing-8;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+    justify-content: center;
+
+    @include tablet {
+      flex-direction: row;
+    }
+  }
+}
+
+// Scroll Reveal
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

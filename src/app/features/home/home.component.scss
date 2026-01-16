@@ -1,0 +1,693 @@
+@import '../../../styles/abstracts/variables';
+@import '../../../styles/abstracts/mixins';
+
+// ==========================================
+// HERO SECTION
+// ==========================================
+.hero {
+  position: relative;
+  min-height: 100vh;
+  @include flex-column-center;
+  padding: $spacing-20 $spacing-4;
+
+  &__background {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    img {
+      @include image-cover;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba($color-black, 0.4) 0%,
+      rgba($color-black, 0.6) 100%
+    );
+  }
+
+  &__content {
+    text-align: center;
+    color: $color-white;
+    max-width: 800px;
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: $spacing-2 $spacing-4;
+    background-color: rgba($color-white, 0.15);
+    border-radius: $border-radius-full;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wider;
+    margin-bottom: $spacing-6;
+    backdrop-filter: blur(10px);
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    margin-bottom: $spacing-4;
+    color: $color-white;
+    text-shadow: 2px 2px 8px rgba($color-black, 0.5);
+
+    @include mobile-xs {
+      font-size: $font-size-2xl;
+    }
+
+    @include mobile-up {
+      font-size: $font-size-4xl;
+    }
+
+    @include tablet {
+      font-size: $font-size-5xl;
+    }
+
+    @include desktop {
+      font-size: $font-size-6xl;
+    }
+
+    @include large-desktop {
+      font-size: $font-size-7xl;
+    }
+
+    @include extra-large {
+      font-size: 5rem; // 80px
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-base;
+    color: rgba($color-white, 0.9);
+    margin-bottom: $spacing-6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 $spacing-2;
+
+    @include mobile-xs {
+      font-size: $font-size-sm;
+    }
+
+    @include mobile-up {
+      font-size: $font-size-lg;
+    }
+
+    @include tablet {
+      font-size: $font-size-xl;
+      padding: 0;
+    }
+
+    @include desktop {
+      max-width: 700px;
+    }
+
+    @include extra-large {
+      font-size: $font-size-2xl;
+      max-width: 800px;
+    }
+  }
+
+  &__rating {
+    @include flex-center;
+    gap: $spacing-3;
+    margin-bottom: $spacing-8;
+    flex-wrap: wrap;
+  }
+
+  &__stars {
+    display: flex;
+    gap: $spacing-1;
+    color: $color-accent;
+  }
+
+  &__cta {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+    justify-content: center;
+    width: 100%;
+    padding: 0 $spacing-4;
+
+    @include mobile-xs {
+      gap: $spacing-2;
+      padding: 0 $spacing-2;
+    }
+
+    @include mobile-up {
+      gap: $spacing-4;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    @include tablet {
+      flex-direction: row;
+      max-width: none;
+      padding: 0;
+    }
+  }
+
+  &__scroll {
+    position: absolute;
+    bottom: $spacing-8;
+    left: 50%;
+    transform: translateX(-50%);
+    @include flex-column;
+    align-items: center;
+    gap: $spacing-2;
+    color: rgba($color-white, 0.7);
+    font-size: $font-size-sm;
+    animation: bounce 2s infinite;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+// ==========================================
+// ABOUT SECTION
+// ==========================================
+.about {
+  background-color: $color-background;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-10;
+    align-items: center;
+
+    @include desktop {
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-16;
+    }
+  }
+
+  &__image {
+    position: relative;
+
+    img {
+      width: 100%;
+      border-radius: $border-radius-xl;
+      box-shadow: $shadow-xl;
+    }
+
+    &-accent {
+      position: absolute;
+      bottom: -$spacing-6;
+      right: -$spacing-6;
+      width: 200px;
+      height: 200px;
+      background-color: $color-accent;
+      border-radius: $border-radius-xl;
+      z-index: -1;
+      opacity: 0.2;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wider;
+    color: $color-accent;
+    margin-bottom: $spacing-3;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-4;
+
+    @include tablet {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  &__text {
+    font-size: $font-size-base;
+    color: $color-text-light;
+    line-height: $line-height-relaxed;
+    margin-bottom: $spacing-6;
+
+    @include tablet {
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-3;
+    margin-bottom: $spacing-8;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__feature {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    font-size: $font-size-base;
+    color: $color-text;
+
+    svg {
+      color: $color-success;
+      flex-shrink: 0;
+    }
+  }
+}
+
+// ==========================================
+// SPECIALTIES SECTION
+// ==========================================
+.specialties {
+  background-color: $color-background-alt;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-4;
+    margin-bottom: $spacing-10;
+
+    @include mobile-xs {
+      gap: $spacing-3;
+    }
+
+    @include mobile-up {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-5;
+    }
+
+    @include tablet {
+      gap: $spacing-6;
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include extra-large {
+      gap: $spacing-8;
+    }
+  }
+
+  &__cta {
+    text-align: center;
+  }
+}
+
+// Dish Card
+.dish-card {
+  @include card-base;
+  @include card-hover;
+  overflow: hidden;
+
+  &__image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+
+    img {
+      @include image-cover;
+      transition: transform $transition-slow;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: $spacing-3;
+    left: $spacing-3;
+    padding: $spacing-1 $spacing-3;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    border-radius: $border-radius-full;
+
+    &--veg {
+      background-color: $color-success;
+      color: $color-white;
+    }
+  }
+
+  &__content {
+    padding: $spacing-5;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-2;
+  }
+
+  &__description {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    @include text-clamp(2);
+    margin-bottom: $spacing-4;
+  }
+
+  &__footer {
+    @include flex-between;
+  }
+
+  &__price {
+    font-family: $font-heading;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-primary-800;
+  }
+
+  &:hover {
+    .dish-card__image img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+// ==========================================
+// TESTIMONIALS SECTION
+// ==========================================
+.testimonials {
+  background-color: $color-primary-900;
+  color: $color-white;
+
+  .section-label {
+    color: $color-accent;
+  }
+
+  .section-title {
+    color: $color-white;
+  }
+
+  &__carousel {
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  &__track {
+    display: flex;
+    transition: transform $transition-slow;
+  }
+
+  &__slide {
+    flex: 0 0 100%;
+    padding: 0 $spacing-4;
+  }
+
+  &__dots {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-3;
+    margin-top: $spacing-8;
+  }
+
+  &__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: $border-radius-full;
+    background-color: rgba($color-white, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &--active {
+      background-color: $color-accent;
+      transform: scale(1.2);
+    }
+
+    &:hover:not(&--active) {
+      background-color: rgba($color-white, 0.5);
+    }
+  }
+
+  &__cta {
+    text-align: center;
+    margin-top: $spacing-8;
+
+    .btn-link {
+      color: $color-white;
+
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+}
+
+// Testimonial Card
+.testimonial-card {
+  text-align: center;
+  padding: $spacing-8;
+  background-color: rgba($color-white, 0.05);
+  border-radius: $border-radius-xl;
+  border: none;
+
+  &__rating {
+    @include flex-center;
+    gap: $spacing-2;
+    margin-bottom: $spacing-6;
+    color: $color-accent;
+
+    span {
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  &__text {
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    font-style: italic;
+    line-height: $line-height-relaxed;
+    margin-bottom: $spacing-6;
+
+    @include tablet {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-4;
+  }
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: $border-radius-full;
+    background-color: $color-accent;
+    @include flex-center;
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+  }
+
+  &__author {
+    text-align: left;
+
+    cite {
+      display: block;
+      font-style: normal;
+      font-weight: $font-weight-semibold;
+    }
+
+    span {
+      font-size: $font-size-sm;
+      color: rgba($color-white, 0.6);
+    }
+  }
+}
+
+// ==========================================
+// INFO SECTION
+// ==========================================
+.info {
+  background-color: $color-background;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-8;
+    border-radius: $border-radius-xl;
+    overflow: hidden;
+    box-shadow: $shadow-xl;
+    background-color: $color-white;
+
+    @include desktop {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__map {
+    min-height: 300px;
+
+    @include desktop {
+      min-height: 450px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__content {
+    padding: $spacing-8;
+
+    @include tablet {
+      padding: $spacing-10;
+    }
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-4;
+
+    @include tablet {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    padding: $spacing-2 $spacing-4;
+    background-color: rgba($color-error, 0.1);
+    color: $color-error;
+    border-radius: $border-radius-full;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    margin-bottom: $spacing-6;
+
+    &--open {
+      background-color: rgba($color-success, 0.1);
+      color: $color-success;
+    }
+  }
+
+  &__status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: $border-radius-full;
+    background-color: currentColor;
+    animation: pulse 2s infinite;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-5;
+    margin-bottom: $spacing-8;
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-4;
+
+    svg {
+      color: $color-accent;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    strong {
+      display: block;
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-1;
+    }
+
+    p {
+      color: $color-text-light;
+      margin: 0;
+    }
+  }
+
+  &__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-4;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+// ==========================================
+// SECTION HEADERS
+// ==========================================
+.section-header {
+  text-align: center;
+  margin-bottom: $spacing-12;
+}
+
+.section-label {
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-wider;
+  color: $color-accent;
+  margin-bottom: $spacing-3;
+}
+
+.section-title {
+  font-family: $font-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $spacing-4;
+
+  @include tablet {
+    font-size: $font-size-3xl;
+  }
+
+  @include desktop {
+    font-size: $font-size-4xl;
+  }
+}
+
+.section-subtitle {
+  font-size: $font-size-base;
+  color: $color-text-light;
+  max-width: 600px;
+  margin: 0 auto;
+
+  @include tablet {
+    font-size: $font-size-lg;
+  }
+}
+
+// ==========================================
+// SCROLL REVEAL ANIMATION
+// ==========================================
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

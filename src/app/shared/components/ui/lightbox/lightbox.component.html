@@ -1,0 +1,74 @@
+@if (isOpen && currentImage) {
+  <div 
+    class="lightbox"
+    [class.lightbox--open]="isOpen"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Galerie d'images">
+    
+    <!-- Backdrop -->
+    <div class="lightbox__backdrop" (click)="onBackdropClick($event)">
+      
+      <!-- Close Button -->
+      <button 
+        class="lightbox__close" 
+        (click)="onClose()"
+        aria-label="Fermer la galerie">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+      </button>
+
+      <!-- Navigation Previous -->
+      <button 
+        class="lightbox__nav lightbox__nav--prev"
+        (click)="prev()"
+        [disabled]="images.length <= 1"
+        aria-label="Image précédente">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+      </button>
+
+      <!-- Image Container -->
+      <div class="lightbox__content">
+        @if (isLoading()) {
+          <div class="lightbox__loader">
+            <div class="lightbox__spinner"></div>
+          </div>
+        }
+        
+        <img 
+          [src]="currentImage.url"
+          [alt]="currentImage.alt"
+          class="lightbox__image"
+          [class.lightbox__image--loading]="isLoading()"
+          (load)="onImageLoad()"
+          (error)="onImageLoad()">
+        
+        @if (currentImage.caption) {
+          <div class="lightbox__caption">
+            <p>{{ currentImage.caption }}</p>
+          </div>
+        }
+      </div>
+
+      <!-- Navigation Next -->
+      <button 
+        class="lightbox__nav lightbox__nav--next"
+        (click)="next()"
+        [disabled]="images.length <= 1"
+        aria-label="Image suivante">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+      </button>
+
+      <!-- Counter -->
+      <div class="lightbox__counter">
+        {{ _currentIndex() + 1 }} / {{ images.length }}
+      </div>
+    </div>
+  </div>
+}

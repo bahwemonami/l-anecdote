@@ -1,0 +1,482 @@
+@import '../../../styles/abstracts/variables';
+@import '../../../styles/abstracts/mixins';
+
+// Hero Page
+.hero-page {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  @include flex-column-center;
+
+  &__background {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    img {
+      @include image-cover;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba($color-black, 0.5) 0%,
+      rgba($color-black, 0.7) 100%
+    );
+  }
+
+  &__content {
+    text-align: center;
+    color: $color-white;
+    padding: $spacing-4;
+  }
+
+  &__label {
+    display: inline-block;
+    padding: $spacing-2 $spacing-4;
+    background-color: rgba($color-white, 0.15);
+    border-radius: $border-radius-full;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wider;
+    margin-bottom: $spacing-4;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-4;
+
+    @include tablet {
+      font-size: $font-size-5xl;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: rgba($color-white, 0.9);
+  }
+}
+
+// Formulas Section
+.formulas {
+  background-color: $color-background-alt;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-6;
+    max-width: 800px;
+    margin: 0 auto;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+.formula-card {
+  @include card-base;
+  padding: $spacing-6;
+  text-align: center;
+  border: 2px solid $color-primary-200;
+
+  &__header {
+    margin-bottom: $spacing-4;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-2;
+  }
+
+  &__price {
+    font-family: $font-heading;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: $color-accent;
+  }
+
+  &__description {
+    font-size: $font-size-base;
+    color: $color-text-light;
+  }
+}
+
+// Menu Section
+.menu {
+  background-color: $color-background;
+}
+
+.menu-category {
+  margin-bottom: $spacing-16;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-6;
+    margin-bottom: $spacing-8;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    color: $color-text;
+    white-space: nowrap;
+
+    @include tablet {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  &__line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      $color-primary-300,
+      transparent
+    );
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-4;
+
+    @include mobile-xs {
+      gap: $spacing-3;
+    }
+
+    @include mobile-up {
+      gap: $spacing-5;
+    }
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-6;
+    }
+
+    @include extra-large {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+// Menu Item
+.menu-item {
+  @include card-base;
+  display: flex;
+  overflow: hidden;
+  transition: transform $transition-normal, box-shadow $transition-normal;
+
+  @include mobile-xs {
+    flex-direction: column;
+  }
+
+  @include hover-capable {
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-lg;
+    }
+  }
+
+  &__image {
+    position: relative;
+    width: 100px;
+    flex-shrink: 0;
+
+    @include mobile-xs {
+      width: 100%;
+      height: 150px;
+    }
+
+    @include mobile-up {
+      width: 120px;
+    }
+
+    @include tablet {
+      width: 150px;
+    }
+
+    @include desktop {
+      width: 160px;
+    }
+
+    img {
+      @include image-cover;
+      height: 100%;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: $spacing-2;
+    right: $spacing-2;
+    width: 24px;
+    height: 24px;
+    @include flex-center;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    border-radius: $border-radius-full;
+
+    &--veg {
+      background-color: $color-success;
+      color: $color-white;
+    }
+
+    &--signature {
+      background-color: $color-accent;
+      color: $color-white;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    padding: $spacing-3;
+    display: flex;
+    flex-direction: column;
+
+    @include mobile-xs {
+      padding: $spacing-3;
+    }
+
+    @include mobile-up {
+      padding: $spacing-4;
+    }
+
+    @include tablet {
+      padding: $spacing-5;
+    }
+  }
+
+  &__header {
+    @include flex-between;
+    margin-bottom: $spacing-2;
+    gap: $spacing-3;
+  }
+
+  &__name {
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $color-text;
+    margin: 0;
+  }
+
+  &__supplement {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
+    color: $color-text-muted;
+    font-family: $font-body;
+  }
+
+  &__price {
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-primary-800;
+    white-space: nowrap;
+  }
+
+  &__description {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    line-height: $line-height-relaxed;
+    margin: 0;
+    @include text-clamp(2);
+  }
+}
+
+// Drinks Grid
+.drinks-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-10;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.drinks-section {
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    color: $color-primary-800;
+    margin-bottom: $spacing-6;
+    padding-bottom: $spacing-3;
+    border-bottom: 2px solid $color-primary-200;
+  }
+}
+
+.drinks-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+
+  &__item {
+    display: flex;
+    align-items: baseline;
+    gap: $spacing-2;
+  }
+
+  &__name {
+    font-size: $font-size-base;
+    color: $color-text;
+    white-space: nowrap;
+  }
+
+  &__dots {
+    flex: 1;
+    border-bottom: 2px dotted $color-primary-200;
+    margin: 0 $spacing-2;
+  }
+
+  &__price {
+    font-weight: $font-weight-semibold;
+    color: $color-primary-800;
+    white-space: nowrap;
+  }
+}
+
+// Menu Info
+.menu-info {
+  background-color: $color-background-alt;
+  padding: $spacing-8 0;
+
+  &__content {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: $spacing-6;
+    text-align: center;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    font-size: $font-size-sm;
+    color: $color-text-light;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    @include flex-center;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    border-radius: $border-radius-full;
+    background-color: $color-primary-800;
+    color: $color-white;
+  }
+
+  &__note {
+    width: 100%;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    margin-top: $spacing-4;
+  }
+}
+
+// CTA Section
+.cta-section {
+  padding: $spacing-16 0;
+  background-color: $color-primary-900;
+}
+
+.cta-box {
+  text-align: center;
+  padding: $spacing-10 $spacing-6;
+  background: linear-gradient(
+    135deg,
+    rgba($color-accent, 0.1) 0%,
+    transparent 100%
+  );
+  border-radius: $border-radius-xl;
+
+  @include tablet {
+    padding: $spacing-16 $spacing-12;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    color: $color-white;
+    margin-bottom: $spacing-4;
+
+    @include tablet {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  &__text {
+    font-size: $font-size-lg;
+    color: rgba($color-white, 0.8);
+    margin-bottom: $spacing-8;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+    justify-content: center;
+
+    @include tablet {
+      flex-direction: row;
+    }
+  }
+}
+
+// Section Headers
+.section-header {
+  text-align: center;
+  margin-bottom: $spacing-12;
+}
+
+.section-label {
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-wider;
+  color: $color-accent;
+  margin-bottom: $spacing-3;
+}
+
+.section-title {
+  font-family: $font-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $spacing-4;
+
+  @include tablet {
+    font-size: $font-size-3xl;
+  }
+}
+
+// Scroll Reveal
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

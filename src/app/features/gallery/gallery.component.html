@@ -1,0 +1,70 @@
+<!-- Hero Section -->
+<section class="hero-page">
+  <div class="hero-page__background">
+    <img 
+      src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920" 
+      alt="Ambiance du restaurant"
+      loading="eager">
+    <div class="hero-page__overlay"></div>
+  </div>
+  <div class="hero-page__content">
+    <span class="hero-page__label">Découvrez</span>
+    <h1 class="hero-page__title">Notre Galerie</h1>
+    <p class="hero-page__subtitle">Plongez dans l'univers de L'Anecdote</p>
+  </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="gallery section">
+  <div class="container">
+    <!-- Filters -->
+    <div class="gallery__filters scroll-reveal">
+      @for (cat of categories; track cat.id) {
+        <button 
+          class="gallery__filter"
+          [class.gallery__filter--active]="activeCategory() === cat.id"
+          (click)="setCategory(cat.id)">
+          {{ cat.label }}
+          <span class="gallery__filter-count">{{ cat.count }}</span>
+        </button>
+      }
+    </div>
+
+    <!-- Grid -->
+    <div class="gallery__grid">
+      @for (image of filteredImages; track image.id; let i = $index) {
+        <button 
+          class="gallery__item scroll-reveal"
+          [style.animation-delay]="(i * 0.05) + 's'"
+          (click)="openLightbox(i)"
+          [attr.aria-label]="'Voir ' + image.alt">
+          <div class="gallery__item-image">
+            <img 
+              [src]="image.thumbnail" 
+              [alt]="image.alt"
+              loading="lazy">
+          </div>
+          <div class="gallery__item-overlay">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.3-4.3"/>
+              <path d="M11 8v6"/>
+              <path d="M8 11h6"/>
+            </svg>
+            @if (image.caption) {
+              <span class="gallery__item-caption">{{ image.caption }}</span>
+            }
+          </div>
+        </button>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<app-lightbox
+  [images]="filteredImages"
+  [currentIndex]="currentImageIndex()"
+  [isOpen]="lightboxOpen()"
+  (close)="closeLightbox()"
+  (indexChange)="onIndexChange($event)" />
